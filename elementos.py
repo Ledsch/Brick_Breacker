@@ -26,10 +26,10 @@ def criar_blocos(qtde_por_linha=QTDE_BLOCOS_LINHA, qtde_linhas=QTDE_LINHAS_BLOCO
     Gera e retorna uma lista de Rects representando os blocos.
     Por padrão usa as constantes definidas em constantes.py.
     """
-    largura_tela         = TAMANHO_TELA[0]
-    distancia_entre      = 5
-    largura_bloco        = largura_tela / qtde_por_linha - distancia_entre
-    altura_bloco         = 15
+    largura_tela = TAMANHO_TELA[0]
+    distancia_entre = 5
+    largura_bloco = largura_tela / qtde_por_linha - distancia_entre
+    altura_bloco = 15
     espacamento_vertical = altura_bloco + 10
 
     blocos = []
@@ -37,7 +37,7 @@ def criar_blocos(qtde_por_linha=QTDE_BLOCOS_LINHA, qtde_linhas=QTDE_LINHAS_BLOCO
         for coluna in range(qtde_por_linha):
             bloco = pygame.Rect(
                 coluna * (largura_bloco + distancia_entre),
-                linha  * espacamento_vertical,
+                linha * espacamento_vertical,
                 largura_bloco,
                 altura_bloco,
             )

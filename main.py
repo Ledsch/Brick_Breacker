@@ -1,12 +1,14 @@
 # =============================================
 # PONTO DE ENTRADA DO JOGO
+# DESENVOVEDOR: LEONARDO M S.
+# FACULDADE: UNINTER
 # =============================================
 import pygame
 import sys
 
 from constantes import FPS, VELOCIDADE_BOLA, MUSICA_FUNDO
-from elementos  import criar_bola, criar_jogador, criar_blocos
-from desenho    import (
+from elementos import criar_bola, criar_jogador, criar_blocos
+from desenho import (
     desenhar_fundo,
     desenhar_blocos,
     desenhar_pontuacao,
@@ -18,7 +20,7 @@ from logica import movimentar_jogador, movimentar_bola, verificar_vitoria
 
 def inicializar():
     pygame.init()
-    tela  = pygame.display.set_mode((800, 800))
+    tela = pygame.display.set_mode((800, 800))
     clock = pygame.time.Clock()
     pygame.display.set_caption("Brick Breaker")
     return tela, clock
@@ -27,8 +29,8 @@ def inicializar():
 def iniciar_musica():
     """Carrega e toca a música de fundo em loop infinito."""
     pygame.mixer.music.load(MUSICA_FUNDO)  # carrega o arquivo
-    pygame.mixer.music.set_volume(0.5)     # volume de 0.0 a 1.0
-    pygame.mixer.music.play(-1)            # -1 = loop infinito
+    pygame.mixer.music.set_volume(0.5)  # volume de 0.0 a 1.0
+    pygame.mixer.music.play(-1)  # -1 = loop infinito
 
 
 def parar_musica():
@@ -45,12 +47,12 @@ def main():
     desenhar_tela_inicio(tela)
 
     while True:
-        bola      = criar_bola()
-        jogador   = criar_jogador()
-        blocos    = criar_blocos()
+        bola = criar_bola()
+        jogador = criar_jogador()
+        blocos = criar_blocos()
         movimento = VELOCIDADE_BOLA[:]
-        rodando   = True
-        vitoria   = False
+        rodando = True
+        vitoria = False
 
         while rodando:
             clock.tick(FPS)
@@ -76,7 +78,7 @@ def main():
             desenhar_pontuacao(tela, len(criar_blocos()) - len(blocos))
             pygame.display.flip()
 
-        pontuacao     = len(criar_blocos()) - len(blocos)
+        pontuacao = len(criar_blocos()) - len(blocos)
         jogar_de_novo = desenhar_mensagem_fim(tela, vitoria, pontuacao)
 
         if not jogar_de_novo:
