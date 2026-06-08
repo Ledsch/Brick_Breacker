@@ -1,26 +1,33 @@
-import os
-
 # =============================================
 # CONSTANTES GLOBAIS DO JOGO
 # =============================================
+import os
+import sys
 
-TAMANHO_TELA = (800, 800)
-TAMANHO_BOLA = 15
-TAMANHO_JOGADOR = 100
-QTDE_BLOCOS_LINHA = 8
+# Detecta se está rodando como .exe ou como script normal no PyCharm
+if getattr(sys, "frozen", False):
+    PASTA_BASE = sys._MEIPASS                          # dentro do .exe compilado
+else:
+    PASTA_BASE = os.path.dirname(os.path.abspath(__file__))  # rodando no PyCharm
+
+TAMANHO_TELA       = (800, 800)
+TAMANHO_BOLA       = 15
+TAMANHO_JOGADOR    = 100
+QTDE_BLOCOS_LINHA  = 8
 QTDE_LINHAS_BLOCOS = 5
-QTDE_TOTAL_BLOCOS = QTDE_BLOCOS_LINHA * QTDE_LINHAS_BLOCOS
-FPS = 60
+QTDE_TOTAL_BLOCOS  = QTDE_BLOCOS_LINHA * QTDE_LINHAS_BLOCOS
+FPS                = 60
 
-VELOCIDADE_BOLA = [7, -7]
+VELOCIDADE_BOLA    = [7, -7]
 VELOCIDADE_JOGADOR = 10
 
-MUSICA_FUNDO = os.path.join("assets", "ratta.mp3")
+# Caminho correto tanto no PyCharm quanto no .exe compilado
+MUSICA_FUNDO = os.path.join(PASTA_BASE, "assets", "ratta.mp3")
 
 CORES = {
-    "branca": (255, 255, 255),
-    "preta": (0, 0, 0),
+    "branca":  (255, 255, 255),
+    "preta":   (0,   0,   0),
     "amarela": (255, 255, 0),
-    "azul": (0, 0, 255),
-    "verde": (0, 255, 0),
+    "azul":    (0,   0,   255),
+    "verde":   (0,   255, 0),
 }
