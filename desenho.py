@@ -5,11 +5,11 @@ import pygame
 from constantes import CORES
 
 
-def desenhar_fundo(tela, jogador, bola):
-    """Limpa a tela e desenha o jogador e a bola."""
+def desenhar_fundo(tela, jogador, bola, imagem_jogador, imagem_bola):
+    """Limpa a tela e desenha o jogador e a bola com imagens."""
     tela.fill(CORES["preta"])
-    pygame.draw.rect(tela, CORES["azul"],   jogador)
-    pygame.draw.rect(tela, CORES["branca"], bola)
+    tela.blit(imagem_bola,    bola)     # ← desenha imagem da bola
+    tela.blit(imagem_jogador, jogador)  # ← desenha imagem do jogador
 
 
 def desenhar_blocos(tela, blocos):
@@ -26,10 +26,6 @@ def desenhar_pontuacao(tela, pontuacao):
 
 
 def desenhar_tela_inicio(tela, recorde):
-    """
-    Tela inicial com título, subtítulo, comandos e recorde.
-    Aguarda o jogador pressionar ENTER ou ESPAÇO.
-    """
     largura, altura = tela.get_size()
 
     fonte_titulo    = pygame.font.Font(None, 90)
@@ -41,12 +37,10 @@ def desenhar_tela_inicio(tela, recorde):
     subtitulo = fonte_subtitulo.render("Destrua todos os blocos!", True, CORES["branca"])
     instrucao = fonte_instrucao.render("Pressione ENTER ou ESPAÇO para começar", True, CORES["verde"])
 
-    # Controles
     texto_controles_titulo = fonte_texto.render("Controles:", True, CORES["branca"])
     texto_controles1       = fonte_texto.render("← Seta Esquerda: mover para esquerda", True, CORES["branca"])
     texto_controles2       = fonte_texto.render("→ Seta Direita: mover para direita",   True, CORES["branca"])
 
-    # Placar
     texto_placar_titulo = fonte_texto.render("Placar:", True, CORES["amarela"])
     texto_placar        = fonte_texto.render(f"Recorde: {recorde} pontos", True, CORES["amarela"])
 
@@ -69,25 +63,20 @@ def desenhar_tela_inicio(tela, recorde):
 
         tela.fill(CORES["preta"])
 
-        # Título
         pygame.draw.line(tela, CORES["azul"], (50, 190), (largura - 50, 190), 3)
         tela.blit(titulo,    ((largura - titulo.get_width())    // 2, 210))
         tela.blit(subtitulo, ((largura - subtitulo.get_width()) // 2, 300))
         pygame.draw.line(tela, CORES["azul"], (50, 350), (largura - 50, 350), 3)
 
-        # Controles (lado esquerdo)
         tela.blit(texto_controles_titulo, (80, 390))
         tela.blit(texto_controles1,       (80, 425))
         tela.blit(texto_controles2,       (80, 455))
 
-        # Placar (lado direito)
         tela.blit(texto_placar_titulo, (largura - texto_placar_titulo.get_width() - 80, 390))
         tela.blit(texto_placar,        (largura - texto_placar.get_width()        - 80, 425))
 
-        # Linha separadora antes da instrução
         pygame.draw.line(tela, CORES["azul"], (50, 500), (largura - 50, 500), 3)
 
-        # Instrução piscando
         contador += 1
         if contador >= 30:
             visivel  = not visivel
@@ -100,13 +89,6 @@ def desenhar_tela_inicio(tela, recorde):
 
 
 def desenhar_mensagem_fim(tela, vitoria, pontuacao, recorde):
-    """
-    Tela de fim de jogo com pontuação, recorde e opções.
-
-    Retorna:
-        True  → jogar novamente
-        False → sair
-    """
     largura, altura = tela.get_size()
     clock           = pygame.time.Clock()
 

@@ -6,9 +6,9 @@ import sys
 
 # Detecta se está rodando como .exe ou como script normal no PyCharm
 if getattr(sys, "frozen", False):
-    PASTA_BASE = sys._MEIPASS                          # dentro do .exe compilado
+    PASTA_BASE = sys._MEIPASS
 else:
-    PASTA_BASE = os.path.dirname(os.path.abspath(__file__))  # rodando no PyCharm
+    PASTA_BASE = os.path.dirname(os.path.abspath(__file__))
 
 TAMANHO_TELA       = (800, 800)
 TAMANHO_BOLA       = 15
@@ -21,8 +21,10 @@ FPS                = 60
 VELOCIDADE_BOLA    = [7, -7]
 VELOCIDADE_JOGADOR = 10
 
-# Caminho correto tanto no PyCharm quanto no .exe compilado
-MUSICA_FUNDO = os.path.join(PASTA_BASE, "assets", "ratta.mp3")
+# Caminhos de áudio e imagens
+MUSICA_FUNDO   = os.path.join(PASTA_BASE, "assets", "ratta.mp3")
+IMAGEM_BOLA    = os.path.join(PASTA_BASE, "assets", "bola.png")     # ← novo
+IMAGEM_JOGADOR = os.path.join(PASTA_BASE, "assets", "jogador.png")  # ← novo
 
 CORES = {
     "branca":  (255, 255, 255),
